@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-ffxiv min-h-[100vh] overflow-auto text-white font-body">
+    <div class="bg-ffxiv min-h-[100vh] overflow-auto text-white font-body p-5">
         <slot />
     </div>
 </template>
