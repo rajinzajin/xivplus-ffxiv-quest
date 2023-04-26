@@ -1,19 +1,25 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
-import { getQuests } from "./utils/quest";
+import quests from "./data/quests.json";
 export default defineNuxtConfig({
-	modules: ["@nuxtjs/tailwindcss"],
+	modules: ["@nuxtjs/tailwindcss", "@pinia/nuxt"],
 	hooks: {
 		async "nitro:config"(nitroConfig) {
 			if (nitroConfig.dev) {
 				return;
 			}
 			// ..Async logic..
-			const quests = await getQuests();
 			quests.forEach((q) => {
-				nitroConfig.prerender.routes.push(`/quest/${q["#"]}`);
+				nitroConfig.prerender.routes.push(`/quest/${q.id}`);
 			});
 		},
 	},
+	imports: {
+		dirs: ["./stores"],
+	},
+	// pinia: {
+	// 	autoImports: ["defineStore", "acceptHMRUpdate"],
+	// },
+	
 	// nitro: {
 	// 	prerender: {
 	// 		routes: ["/quest/65623", "/quest/65632"],

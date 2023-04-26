@@ -4,5 +4,5 @@ const { data: quest } = await useFetch(() => `/api/quest/${route.params.id}`);
 </script>
 
 <template>
-    <h1>{{quest.Name}}</h1>
+    <h1>{{quest.name}}</h1>
 </template>
