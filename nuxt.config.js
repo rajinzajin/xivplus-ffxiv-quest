@@ -16,9 +16,10 @@ export default defineNuxtConfig({
 	imports: {
 		dirs: ["./stores"],
 	},
-	pinia: {
-		autoImports: ["defineStore", "acceptHMRUpdate"],
-	},
+	// pinia: {
+	// 	autoImports: ["defineStore", "acceptHMRUpdate"],
+	// },
+	
 	// nitro: {
 	// 	prerender: {
 	// 		routes: ["/quest/65623", "/quest/65632"],
