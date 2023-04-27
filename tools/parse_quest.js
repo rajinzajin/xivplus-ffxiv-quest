@@ -52,7 +52,6 @@ function parseQuestNames(){
 			.on("data", (data) => {
 				const id = data["#"];
 				const name = data["Name"]
-				result.push({id, name})
 				console.log(name);
 			})
 			.on("end", () => {
@@ -74,7 +73,8 @@ function parseQuestDetail(){
 				const id = data["#"];
 				const name = data["Name"]
 				const expansion = data["Expansion"]
-				result.push({id, name, expansion})
+				
+				result.push({id, name, expansion, GilReward: data["GilReward"]})
 			})
 			.on("end", () => {
 				fs.writeFileSync("./data/quest_details.json", JSON.stringify(result));
