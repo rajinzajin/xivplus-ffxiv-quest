@@ -3,12 +3,13 @@ import expansions from "~/data/expansions.json"
 import journal_genre from "~/data/journal_genre.json"
 export default defineEventHandler((event) => {
     const quest = quests.find(q=>q.id == `${event.context.params.id}`)
-    const {id, name, GilReward, JournalGenre} = quest
+    const {id, name, GilReward, JournalGenre, ExpFactor} = quest
     return {
         id,
         name,
         expansion: expansions.find(e=>e.id == `${quest.expansion}`).name,
         GilReward,
-        JournalGenre: journal_genre.find(j=>j.id == `${JournalGenre}`)
+        JournalGenre: journal_genre.find(j=>j.id == `${JournalGenre}`),
+        ExpFactor
     }
 });
