@@ -1,5 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
-import quests from "./data/quests.json";
+import quests from "./data/quest_names.json";
 export default defineNuxtConfig({
 	modules: ["@nuxtjs/tailwindcss", "@pinia/nuxt"],
 	hooks: {
