@@ -75,7 +75,8 @@ function parseQuestDetail(){
 				const expansion = data["Expansion"]
 				const JournalGenre = data["JournalGenre"]
 				const ExpFactor = data["ExpFactor"]
-				result.push({id, name, expansion, GilReward: data["GilReward"], JournalGenre, ExpFactor})
+				const ClassJob_Required = data["ClassJob{Required}"]
+				result.push({id, name, expansion, GilReward: data["GilReward"], JournalGenre, ExpFactor, ClassJob_Required})
 			})
 			.on("end", () => {
 				fs.writeFileSync("./data/quest_details.json", JSON.stringify(result));

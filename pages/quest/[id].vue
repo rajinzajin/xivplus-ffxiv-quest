@@ -9,4 +9,5 @@ const { data: quest } = await useFetch(() => `/api/quest/${route.params.id}`);
     <h1>Gil Reward : {{quest.GilReward}}</h1>
     <h1>Journal Genre : {{quest.JournalGenre.Name}}</h1>
     <h1>Exp : {{quest.ExpFactor}}</h1>
+    <h1>Class Job Required : {{quest.ClassJob_Required.Abbreviation}}</h1>
 </template>
