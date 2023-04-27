@@ -3,7 +3,7 @@ const axios = require("axios");
 
 const getQuests = async () => {
 	const res = await axios(
-		"https://raw.githubusercontent.com/rajinzajin/ffxiv-data-csv/master/csv/Quest.csv"
+		"https://raw.githubusercontent.com/rajinzajin/ffxiv-data-csv/master/csv/JournalGenre.csv"
 	);
 	return res.data;
 };
@@ -30,18 +30,15 @@ function parseKeys(){
 		csvStream
 			.pipe(csv())
 			.on("data", (data) => {
-				// const id = data["#"];
-				// const name = data["Name"]
 				result.push(data)
 			})
 			.on("end", () => {
-				fs.writeFileSync("./data/quest_keys.json", JSON.stringify(result[0]));
 				console.log("CSV parsing complete!");
 			});
 	});
 }
 
-function parseQuestNames(){
+function parseJournalGenre(){
 	getQuests().then((quest_csv) => {
 		let newCSV = removeCsvLine(quest_csv, 0); //remove unused row
 		newCSV = removeCsvLine(newCSV, 1); //remove unused row
@@ -51,37 +48,15 @@ function parseQuestNames(){
 			.pipe(csv())
 			.on("data", (data) => {
 				const id = data["#"];
-				const name = data["Name"]
-				console.log(name);
+				const Icon = data["Icon"]
+				const Name = data["Name"]
+				result.push({id, Icon, Name});
 			})
 			.on("end", () => {
-				fs.writeFileSync("./data/quest_names.json", JSON.stringify(result));
+				fs.writeFileSync("./data/journal_genre.json", JSON.stringify(result));
 				console.log("CSV parsing complete!");
 			});
 	});
 }
 
-function parseQuestDetail(){
-	getQuests().then((quest_csv) => {
-		let newCSV = removeCsvLine(quest_csv, 0); //remove unused row
-		newCSV = removeCsvLine(newCSV, 1); //remove unused row
-		const csvStream = Readable.from(newCSV);
-		const result = []
-		csvStream
-			.pipe(csv())
-			.on("data", (data) => {
-				const id = data["#"];
-				const name = data["Name"]
-				const expansion = data["Expansion"]
-				const JournalGenre = data["JournalGenre"]
-				result.push({id, name, expansion, GilReward: data["GilReward"], JournalGenre})
-			})
-			.on("end", () => {
-				fs.writeFileSync("./data/quest_details.json", JSON.stringify(result));
-				console.log("CSV parsing complete!");
-			});
-	});
-}
-
-// parseKeys()
-parseQuestDetail()
+parseJournalGenre()

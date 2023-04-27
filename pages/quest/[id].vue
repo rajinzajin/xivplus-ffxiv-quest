@@ -7,4 +7,5 @@ const { data: quest } = await useFetch(() => `/api/quest/${route.params.id}`);
     <h1>Name : {{quest.name}}</h1>
     <h1>Expansion : {{quest.expansion}}</h1>
     <h1>Gil Reward : {{quest.GilReward}}</h1>
+    <h1>Journal Genre : {{quest.JournalGenre.Name}}</h1>
 </template>
