@@ -35,7 +35,7 @@ function parseKeys(){
 				result.push(data)
 			})
 			.on("end", () => {
-				fs.writeFileSync("./data/quest_keys.json", JSON.stringify(result[0]));
+				fs.writeFileSync("./data/quest_keys.json", JSON.stringify(result[3]));
 				console.log("CSV parsing complete!");
 			});
 	});
