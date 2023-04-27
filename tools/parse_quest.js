@@ -21,18 +21,18 @@ function removeCsvLine(csvString, n) {
 	return newCsvString;
 }
 
-function parseKeys(){
+function parseKeys() {
 	getQuests().then((quest_csv) => {
 		let newCSV = removeCsvLine(quest_csv, 0); //remove unused row
 		newCSV = removeCsvLine(newCSV, 1); //remove unused row
 		const csvStream = Readable.from(newCSV);
-		const result = []
+		const result = [];
 		csvStream
 			.pipe(csv())
 			.on("data", (data) => {
 				// const id = data["#"];
 				// const name = data["Name"]
-				result.push(data)
+				result.push(data);
 			})
 			.on("end", () => {
 				fs.writeFileSync("./data/quest_keys.json", JSON.stringify(result[3]));
@@ -41,17 +41,17 @@ function parseKeys(){
 	});
 }
 
-function parseQuestNames(){
+function parseQuestNames() {
 	getQuests().then((quest_csv) => {
 		let newCSV = removeCsvLine(quest_csv, 0); //remove unused row
 		newCSV = removeCsvLine(newCSV, 1); //remove unused row
 		const csvStream = Readable.from(newCSV);
-		const result = []
+		const result = [];
 		csvStream
 			.pipe(csv())
 			.on("data", (data) => {
 				const id = data["#"];
-				const name = data["Name"]
+				const name = data["Name"];
 				console.log(name);
 			})
 			.on("end", () => {
@@ -61,22 +61,32 @@ function parseQuestNames(){
 	});
 }
 
-function parseQuestDetail(){
+function parseQuestDetail() {
 	getQuests().then((quest_csv) => {
 		let newCSV = removeCsvLine(quest_csv, 0); //remove unused row
 		newCSV = removeCsvLine(newCSV, 1); //remove unused row
 		const csvStream = Readable.from(newCSV);
-		const result = []
+		const result = [];
 		csvStream
 			.pipe(csv())
 			.on("data", (data) => {
 				const id = data["#"];
-				const name = data["Name"]
-				const expansion = data["Expansion"]
-				const JournalGenre = data["JournalGenre"]
-				const ExpFactor = data["ExpFactor"]
-				const ClassJob_Required = data["ClassJob{Required}"]
-				result.push({id, name, expansion, GilReward: data["GilReward"], JournalGenre, ExpFactor, ClassJob_Required})
+				const name = data["Name"];
+				const expansion = data["Expansion"];
+				const JournalGenre = data["JournalGenre"];
+				const ExpFactor = data["ExpFactor"];
+				const ClassJob_Required = data["ClassJob{Required}"];
+				const PlaceName = data["PlaceName"];
+				result.push({
+					id,
+					name,
+					expansion,
+					GilReward: data["GilReward"],
+					JournalGenre,
+					ExpFactor,
+					ClassJob_Required,
+					PlaceName
+				});
 			})
 			.on("end", () => {
 				fs.writeFileSync("./data/quest_details.json", JSON.stringify(result));
@@ -86,4 +96,4 @@ function parseQuestDetail(){
 }
 
 // parseKeys()
-parseQuestDetail()
+parseQuestDetail();

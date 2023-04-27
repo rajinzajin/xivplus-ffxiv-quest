@@ -2,9 +2,10 @@ import quests from "~/data/quest_details.json"
 import expansions from "~/data/expansions.json"
 import journal_genre from "~/data/journal_genre.json"
 import class_job from "~/data/class_job.json"
+import place_name from "~/data/place_name.json"
 export default defineEventHandler((event) => {
     const quest = quests.find(q=>q.id == `${event.context.params.id}`)
-    const {id, name, GilReward, JournalGenre, ExpFactor, ClassJob_Required} = quest
+    const {id, name, GilReward, JournalGenre, ExpFactor, ClassJob_Required, PlaceName} = quest
     return {
         id,
         name,
@@ -12,6 +13,7 @@ export default defineEventHandler((event) => {
         GilReward,
         JournalGenre: journal_genre.find(j=>j.id == `${JournalGenre}`),
         ExpFactor,
-        ClassJob_Required: class_job.find(c=>c.id == `${ClassJob_Required}`)
+        ClassJob_Required: class_job.find(c=>c.id == `${ClassJob_Required}`),
+        PlaceName: place_name.find(p=>p.id == `${PlaceName}`)
     }
 });
