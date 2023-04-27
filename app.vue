@@ -1,4 +1,5 @@
 <script setup>
+import "~/assets/global.css"
 console.log("START")
 </script>
 <template>
